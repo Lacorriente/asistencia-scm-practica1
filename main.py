@@ -1,27 +1,35 @@
 
-# main.py - Sistema de Asistencia (v1.1.0)
 
-total_asistencias = 0
+print("=== SISTEMA DE ASISTENCIA v2.0.0 ===")
 
-def registrar_asistencia(dni: str):
-    global total_asistencias
+contador_asistencias = 0
 
-    dni_limpio = dni.strip()
+def registrar_asistencia(estudiante):
+    global contador_asistencias
 
-    if len(dni_limpio) >= 7 and dni_limpio.isdigit():
-        total_asistencias += 1
-        print(f"[OK] Asistencia registrada para DNI: {dni_limpio}")
-        print(f"Total de asistencias: {total_asistencias}")
-        return True
+    dni = estudiante["dni"].strip()
+    nombre = estudiante["nombre"]
+    apellido = estudiante["apellido"]
+
+    if len(dni) >= 7 and dni.isdigit():
+        contador_asistencias += 1
+        print(f"[OK] Asistencia registrada para: {nombre} {apellido}")
+        print(f"DNI: {dni}")
+        print(f"Total de asistencias registradas: {contador_asistencias}")
     else:
-        print("[ERROR] DNI invalido")
-        return False
+        print("[ERROR] DNI inválido")
+
+# Registrar asistencias
+registrar_asistencia({
+    "dni": "40123456",
+    "nombre": "Juan",
+    "apellido": "Perez"
+})
+
+registrar_asistencia({
+    "dni": "40123457",
+    "nombre": "Maria",
+    "apellido": "Gomez"
+})
 
 
-if __name__ == "__main__":
-    print("=== SISTEMA DE ASISTENCIA v1.1.0 ===")
-
-    registrar_asistencia("40123456")
-    registrar_asistencia("38999111")
-
-    print(f"Total procesados en sesion: {total_asistencias}")
